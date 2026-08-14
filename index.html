@@ -3,92 +3,182 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Maul — Fullstack Developer</title>
-  <meta name="description" content="Fullstack developer building clean web apps. Based in Bogor, Indonesia.">
-  <meta name="theme-color" content="#0f172a">
+  <title>Maul — CLI</title>
+  <meta name="description" content="Fullstack developer. Bogor, ID. Building tools and systems.">
+  <meta name="theme-color" content="#0d1117">
   <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=DM+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
   <script>
     tailwind.config = {
       theme: {
         extend: {
-          fontFamily: { sans: ['Inter', 'ui-sans-serif', 'system-ui'], mono: ['Fira Code', 'ui-monospace', 'Menlo'] },
-          colors: { accent: '#3b82f6' }
+          fontFamily: {
+            mono: ['DM Mono', 'ui-monospace', 'Menlo', 'Monaco'],
+            body: ['SF Mono', 'Fira Code', 'ui-monospace'],
+          },
+          colors: {
+            bg: '#0d1117',            /* terminal charcoal        */
+            'bg-emit': '#161b22',     /* subtle emit band         */
+            'ink': '#e6edf3',
+            'ink-dim': '#8b949e',
+            'ink-x': '#6e7681',
+            accent: '#58a6ff',        /* terminal-blue accent     */
+            line: '#21262d',
+            badge: '#1f6feb',
+            'status-ok': '#238636',
+          },
+          spacing: { 13: '3.25rem', 15: '3.75rem' },
         }
       }
     }
   </script>
   <style>
-    html { scroll-behavior: smooth; scroll-padding-top: 4rem; }
-    body { background: #0f172a; }
+    html { scroll-behavior: smooth; scroll-padding-top: 6rem; }
+    body { background: #0d1117; }
+    /* status bar scanline texture (subtle) */
+    body::before {
+      content: "";
+      position: fixed; inset: 0; pointer-events: none; z-index: 60;
+      background: repeating-linear-gradient(0deg, rgba(255,255,255,0.015) 0 1px, transparent 2px 4px);
+    }
   </style>
 </head>
-<body class="font-sans text-slate-300">
-  <a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-50 focus:bg-accent focus:text-white focus:px-4 focus:py-2">Skip to content</a>
+<body class="font-mono text-ink-dim antialiased">
 
-  <main id="main">
-    <!-- Hero -->
-    <section id="top" class="min-h-screen flex flex-col justify-center">
-      <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8 py-24">
-        <p class="font-mono text-xs text-slate-500 mb-4 tracking-wider">HELLO, I'M</p>
-        <h1 class="text-5xl sm:text-6xl font-bold text-white mb-4">Maul</h1>
-        <p class="text-2xl text-slate-300 mb-2">Fullstack Developer</p>
-        <p class="font-mono text-sm text-slate-500 mb-8">Bogor, ID · Building stuff on the web</p>
-        <div class="flex flex-col sm:flex-row gap-4">
-          <a href="#projects" class="inline-flex items-center px-6 py-3 border border-accent text-white hover:bg-accent/10 transition-colors">View projects</a>
-          <a href="#contact" class="inline-flex items-center px-6 py-3 border border-slate-600 text-slate-300 hover:border-accent hover:text-accent transition-colors">Contact</a>
-        </div>
-      </div>
-    </section>
+<a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[60] focus:bg-accent focus:text-bg focus:px-3 focus:py-1 focus:text-xs">Skip to content</a>
 
-    <!-- About -->
-    <section id="about" class="border-t border-slate-800">
-      <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8 py-20">
-        <h2 class="font-mono text-xs text-slate-500 mb-4 tracking-wider">01 / ABOUT</h2>
-        <p class="text-slate-300 leading-relaxed">
-          I build web applications that balance clean engineering with intuitive experience.
-          Currently focused on Laravel, Vue, and infrastructure tooling.
-        </p>
-      </div>
-    </section>
+<!-- status bar -->
+<div class="fixed top-0 left-0 right-0 h-7 bg-[#161b22] border-b border-line flex items-center px-4 text-[11px] tracking-[0.12em] text-ink-x z-50">
+  <span class="text-status-ok">●</span>&nbsp;MAUL&nbsp;·&nbsp;SYSTEM&nbsp;ONLINE
+</div>
 
-    <!-- Projects -->
-    <section id="projects" class="border-t border-slate-800">
-      <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8 py-20">
-        <h2 class="font-mono text-xs text-slate-500 mb-4 tracking-wider">02 / PROJECTS</h2>
-        <div class="space-y-8">
-          <div class="border border-slate-800 p-6 hover:border-accent/50 transition-colors">
-            <h3 class="text-xl font-semibold text-white mb-2">SBO API Console</h3>
-            <p class="text-slate-400 mb-3">Simulated Service Layer connection terminal for portfolio demo — pure HTML/CSS/JS.</p>
-            <a href="https://github.com/muhamadmaulanarizki" class="font-mono text-xs text-accent hover:underline">github.com/muhamadmaulanarizki</a>
-          </div>
-          <div class="border border-slate-800 p-6 hover:border-accent/50 transition-colors">
-            <h3 class="text-xl font-semibold text-white mb-2">Futsal Booking System</h3>
-            <p class="text-slate-400 mb-3">Full‑stack Laravel + Vue booking platform with real‑time court availability and POS integration.</p>
-            <a href="https://github.com/muhamadmaulanarizki" class="font-mono text-xs text-accent hover:underline">github.com/muhamadmaulanarizki</a>
-          </div>
-          <div class="border border-slate-800 p-6 hover:border-accent/50 transition-colors">
-            <h3 class="text-xl font-semibold text-white mb-2">Steam Cleaning Tracker</h3>
-            <p class="text-slate-400 mb-3">Internal Laravel dashboard for steam‑cleaning production metrics and quality control.</p>
-            <a href="https://github.com/muhamadmaulanarizki" class="font-mono text-xs text-accent hover:underline">github.com/muhamadmaulanarizki</a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Contact -->
-    <section id="contact" class="border-t border-slate-800">
-      <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8 py-20">
-        <h2 class="font-mono text-xs text-slate-500 mb-4 tracking-wider">03 / CONTACT</h2>
-        <p class="text-slate-300 mb-4">Available for freelance, fulltime, or just a good chat about code.</p>
-        <a href="mailto:muhamad.maulana.rizki@gmail.com" class="font-mono text-accent hover:underline">muhamad.maulana.rizki@gmail.com</a>
-      </div>
-    </section>
-  </main>
-
-  <footer class="border-t border-slate-800 py-6">
-    <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8 font-mono text-xs text-slate-600">
-      © 2026 Maul
+<header class="pt-9 pb-16">
+  <div class="mx-auto max-w-3xl px-4 sm:px-6">
+    <!-- section label -->
+    <p class="text-[10px] tracking-[0.2em] text-ink-x mb-6">USER@MAUL:~$</p>
+    <div class="border-l-2 border-accent pl-6 mb-8">
+      <h1 class="text-[3rem] sm:text-[3.5rem] font-bold text-ink leading-[1.05]">
+        maul
+      </h1>
+      <p class="text-xl text-ink-dim mt-1">fullstack&nbsp;·&nbsp;bogor,&nbsp;id</p>
     </div>
-  </footer>
+
+    <!-- nav -->
+    <nav class="flex gap-8 text-[13px] tracking-[0.12em] uppercase text-ink-x">
+      <a href="#projects" class="hover:text-accent transition-colors duration-200">projects</a>
+      <a href="#stack" class="hover:text-accent transition-colors duration-200">stack</a>
+      <a href="#contact" class="hover:text-accent transition-colors duration-200">contact</a>
+    </nav>
+
+    <!-- viewport indicator -->
+    <div class="mt-16 font-mono text-[11px] tracking-wider text-ink-x select-none">
+      <p>viewport: <span class="text-ink-dim">responsive</span> · <span class="text-accent">dark</span> · <span class="text-ink-x">no.js-required</span></p>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+  <!-- About -->
+  <section class="border-t border-line mb-20">
+    <div class="mx-auto max-w-3xl px-4 sm:px-6 py-12">
+      <p class="text-[10px] tracking-[0.2em] text-ink-x mb-4">01&nbsp;/&nbsp;ABOUT</p>
+      <div class="space-y-3 text-[14px] leading-[1.7] text-ink-dim">
+        <p>I engineer full-stack systems — Laravel APIs, Vue frontends, SAP B1 integrations.</p>
+        <p>Currently building internal tools for steam cleaning operations & futsal POS.</p>
+      </div>
+      <div class="mt-8 grid grid-cols-[max-content_1fr] gap-[2px_0.75rem] text-[11px] tracking-[0.08em]">
+        <span class="text-ink-x">role:</span><span>Fullstack Developer</span>
+        <span class="text-ink-x">location:</span><span>Bogor, Indonesia</span>
+        <span class="text-ink-x">focus:</span><span>ERP integration & internal tooling</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects -->
+  <section id="projects" class="border-t border-line mb-20">
+    <div class="mx-auto max-w-3xl px-4 sm:px-6 py-12">
+      <p class="text-[10px] tracking-[0.2em] text-ink-x mb-4">02&nbsp;/&nbsp;PROJECTS</p>
+      <div class="space-y-8">
+
+        <div class="group border-l-2 border-transparent hover:border-accent transition-colors duration-200 pl-2">
+          <div class="flex items-baseline justify-between gap-2">
+            <h3 class="text-[1.125rem] font-semibold text-ink transition-colors group-hover:text-accent">SBO API Console</h3>
+            <span class="text-[10px] tracking-[0.12em] text-ink-x bg-badge/10 text-badge px-2 py-0.5 rounded">SAP</span>
+          </div>
+          <p class="text-[13px] text-ink-dim mt-1.5 leading-[1.6]">Simulated Service Layer terminal — pure HTML/CSS/JS, no backend.</p>
+          <div class="mt-3 flex gap-3 text-[11px] tracking-[0.08em]">
+            <span class="text-ink-x">stack:</span>
+            <span class="text-ink-dim">html / css / js</span>
+          </div>
+          <a href="https://github.com/muhamadmaulanarizki/portfoliodemo" class="text-accent text-[12px] hover:underline mt-2 inline-block" target="_blank" rel="noopener">github.com/muhamadmaulanarizki/portfoliodemo</a>
+        </div>
+
+        <div class="group border-l-2 border-transparent hover:border-accent transition-colors duration-200 pl-2">
+          <div class="flex items-baseline justify-between gap-2">
+            <h3 class="text-[1.125rem] font-semibold text-ink transition-colors group-hover:text-accent">Futsal Booking System</h3>
+            <span class="text-[10px] tracking-[0.12em] text-ink-x bg-badge/10 text-badge px-2 py-0.5 rounded">Live</span>
+          </div>
+          <p class="text-[13px] text-ink-dim mt-1.5 leading-[1.6]">Laravel + Vue booking platform with real-time court availability & POS integration.</p>
+          <div class="mt-3 flex gap-3 text-[11px] tracking-[0.08em]">
+            <span class="text-ink-x">stack:</span><span class="text-ink-dim">laravel / vue / mysql</span>
+          </div>
+          <a href="https://github.com/muhamadmaulanarizki" class="text-accent text-[12px] hover:underline mt-2 inline-block" target="_blank" rel="noopener">github.com/muhamadmaulanarizki</a>
+        </div>
+
+        <div class="group border-l-2 border-transparent hover:border-accent transition-colors duration-200 pl-2">
+          <div class="flex items-baseline justify-between gap-2">
+            <h3 class="text-[1.125rem] font-semibold text-ink transition-colors group-hover:text-accent">Steam Cleaning Tracker</h3>
+            <span class="text-[10px] tracking-[0.12em] text-ink-x bg-badge/10 text-badge px-2 py-0.5 rounded">Internal</span>
+          </div>
+          <p class="text-[13px] text-ink-dim mt-1.5 leading-[1.6]">Intranet dashboard for steam-cleaning production metrics & workflow QC.</p>
+          <div class="mt-3 flex gap-3 text-[11px] tracking-[0.08em]">
+            <span class="text-ink-x">stack:</span><span class="text-ink-dim">php / laravel / sqlite</span>
+          </div>
+          <a href="https://github.com/muhamadmaulanarizki" class="text-accent text-[12px] hover:underline mt-2 inline-block" target="_blank" rel="noopener">github.com/muhamadmaulanarizki</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stack -->
+  <section id="stack" class="border-t border-line mb-20">
+    <div class="mx-auto max-w-3xl px-4 sm:px-6 py-12">
+      <p class="text-[10px] tracking-[0.2em] text-ink-x mb-4">03&nbsp;/&nbsp;TECH STACK</p>
+      <div class="grid grid-cols-2 sm:grid-cols-3 gap-4 text-[13px]">
+        <div class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-accent rounded-full"></span>PHP</div>
+        <div class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-accent rounded-full"></span>Laravel</div>
+        <div class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-accent rounded-full"></span>Vue.js</div>
+        <div class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-accent rounded-full"></span>Tailwind</div>
+        <div class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-accent rounded-full"></span>Docker</div>
+        <div class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-accent rounded-full"></span>MySQL</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" class="border-t border-line">
+    <div class="mx-auto max-w-3xl px-4 sm:px-6 py-12">
+      <p class="text-[10px] tracking-[0.2em] text-ink-x mb-4">04&nbsp;/&nbsp;CONTACT</p>
+      <div class="font-mono text-[13px] leading-[1.8]">
+        <p class="text-ink-dim">Email me for collaborations, freelance, or SBO integration discussions.</p>
+        <p class="mt-3">
+          <a href="mailto:muhamad.maulana.rizki@gmail.com" class="text-accent hover:text-ink transition-colors">
+            muhamad.maulana.rizki@gmail.com
+          </a>
+        </p>
+        <p class="mt-1 text-[11px] text-ink-x">GPG available on keyservers · responses within 48h</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="border-t border-line mt-20">
+  <div class="mx-auto max-w-3xl px-4 sm:px-6 py-8 font-mono text-[11px] tracking-[0.1em] text-ink-x">
+    <p>maul@portfolio-demo · <span class="text-status-ok">online</span></p>
+  </div>
+</footer>
+
 </body>
 </html>
