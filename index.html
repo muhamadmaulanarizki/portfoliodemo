@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Maul — Fullstack Developer</title>
+  <meta name="description" content="Fullstack developer building clean web apps. Based in Bogor, Indonesia.">
+  <meta name="theme-color" content="#0f172a">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { sans: ['Inter', 'ui-sans-serif', 'system-ui'], mono: ['Fira Code', 'ui-monospace', 'Menlo'] },
+          colors: { accent: '#3b82f6' }
+        }
+      }
+    }
+  </script>
+  <style>
+    html { scroll-behavior: smooth; scroll-padding-top: 4rem; }
+    body { background: #0f172a; }
+  </style>
+</head>
+<body class="font-sans text-slate-300">
+  <a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-50 focus:bg-accent focus:text-white focus:px-4 focus:py-2">Skip to content</a>
+
+  <main id="main">
+    <!-- Hero -->
+    <section id="top" class="min-h-screen flex flex-col justify-center">
+      <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8 py-24">
+        <p class="font-mono text-xs text-slate-500 mb-4 tracking-wider">HELLO, I'M</p>
+        <h1 class="text-5xl sm:text-6xl font-bold text-white mb-4">Maul</h1>
+        <p class="text-2xl text-slate-300 mb-2">Fullstack Developer</p>
+        <p class="font-mono text-sm text-slate-500 mb-8">Bogor, ID · Building stuff on the web</p>
+        <div class="flex flex-col sm:flex-row gap-4">
+          <a href="#projects" class="inline-flex items-center px-6 py-3 border border-accent text-white hover:bg-accent/10 transition-colors">View projects</a>
+          <a href="#contact" class="inline-flex items-center px-6 py-3 border border-slate-600 text-slate-300 hover:border-accent hover:text-accent transition-colors">Contact</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- About -->
+    <section id="about" class="border-t border-slate-800">
+      <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8 py-20">
+        <h2 class="font-mono text-xs text-slate-500 mb-4 tracking-wider">01 / ABOUT</h2>
+        <p class="text-slate-300 leading-relaxed">
+          I build web applications that balance clean engineering with intuitive experience.
+          Currently focused on Laravel, Vue, and infrastructure tooling.
+        </p>
+      </div>
+    </section>
+
+    <!-- Projects -->
+    <section id="projects" class="border-t border-slate-800">
+      <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8 py-20">
+        <h2 class="font-mono text-xs text-slate-500 mb-4 tracking-wider">02 / PROJECTS</h2>
+        <div class="space-y-8">
+          <div class="border border-slate-800 p-6 hover:border-accent/50 transition-colors">
+            <h3 class="text-xl font-semibold text-white mb-2">SBO API Console</h3>
+            <p class="text-slate-400 mb-3">Simulated Service Layer connection terminal for portfolio demo — pure HTML/CSS/JS.</p>
+            <a href="https://github.com/muhamadmaulanarizki" class="font-mono text-xs text-accent hover:underline">github.com/muhamadmaulanarizki</a>
+          </div>
+          <div class="border border-slate-800 p-6 hover:border-accent/50 transition-colors">
+            <h3 class="text-xl font-semibold text-white mb-2">Futsal Booking System</h3>
+            <p class="text-slate-400 mb-3">Full‑stack Laravel + Vue booking platform with real‑time court availability and POS integration.</p>
+            <a href="https://github.com/muhamadmaulanarizki" class="font-mono text-xs text-accent hover:underline">github.com/muhamadmaulanarizki</a>
+          </div>
+          <div class="border border-slate-800 p-6 hover:border-accent/50 transition-colors">
+            <h3 class="text-xl font-semibold text-white mb-2">Steam Cleaning Tracker</h3>
+            <p class="text-slate-400 mb-3">Internal Laravel dashboard for steam‑cleaning production metrics and quality control.</p>
+            <a href="https://github.com/muhamadmaulanarizki" class="font-mono text-xs text-accent hover:underline">github.com/muhamadmaulanarizki</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="border-t border-slate-800">
+      <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8 py-20">
+        <h2 class="font-mono text-xs text-slate-500 mb-4 tracking-wider">03 / CONTACT</h2>
+        <p class="text-slate-300 mb-4">Available for freelance, fulltime, or just a good chat about code.</p>
+        <a href="mailto:muhamad.maulana.rizki@gmail.com" class="font-mono text-accent hover:underline">muhamad.maulana.rizki@gmail.com</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="border-t border-slate-800 py-6">
+    <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8 font-mono text-xs text-slate-600">
+      © 2026 Maul
+    </div>
+  </footer>
+</body>
+</html>
