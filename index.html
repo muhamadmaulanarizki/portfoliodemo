@@ -35,6 +35,9 @@
           surface: '#161616', 'surface-2': '#262626', 'section-dark': '#161616',
           line: '#393939', 'accent-soft': 'rgba(15,98,254,.12)', 'accent-strong': '#0353e9',
         },
+        animation: {
+          'scroll-x': 'scroll-x 45s linear infinite',
+        },
       }
     }
   }
@@ -84,6 +87,7 @@
 
   /* dot grid */
   .bg-grid-dots { background-image:radial-gradient(circle,var(--tw-colors-line,#393939) 1px,transparent 1px); background-size:24px 24px; background-position:center top; }
+</style>
 
   /* focus ring for interactive cards */
   .project-row { border-left:2px solid transparent; transition:border-color .2s ease,transform .2s ease; }
@@ -105,23 +109,16 @@
 
 <a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-[60] focus:bg-blue-60 focus:text-page focus:px-3 focus:py-1 focus:text-xs">→ skip to content</a>
 
-{============================================================================}
-{== DESIGN NOTE / TOKEN SYSTEM (brainstorm → self-reviewed)                    }
-{==                                                                           }
-{== Palette:                                                                   }
-{==   #161616 (charcoal field)  #262626 (panel surface)                        }
-{==   #f4f4f4 (ink)  #c6c6c6 (muted)  #0f62fe (terminal-blue accent)           }
-{== Typography:                                                                 }
-{==   IBM Plex Mono (labels/numbers)  IBM Plex Sans (body/prose)               }
-{== Layout: asymmetric grid, max-w-6xl, px-4 sm:px-8, section-divider rules   }
-{== Signature element: LIVE COMMAND-LINE HERO — the headline "maul" is rendered }
-{==   as a blinking terminal prompt that types itself on load. Justified by the }
-{==   profile (SAP B1 tech consultant, CLI workflows) — it is not a generic     }
-{==   animation, it is a domain signal. Motion disabled in reduced-motion.      }
-{== What changed vs prev version: removed center-Hero-CTA-card, cream bg risk,  }
-{==   gradient-button template, and Inter/system-ui font. Now monospaced labels}
-{==   + asymmetric two-column split + terminal prompt.                            }
-{============================================================================}
+<!-- DESIGN NOTE / TOKEN SYSTEM (brainstorm → self-reviewed)
+   Palette: #161616 (charcoal field)  #262626 (panel surface)  #f4f4f4 (ink)  #c6c6c6 (muted)  #0f62fe (terminal-blue accent)
+   Typography: IBM Plex Mono (labels/numbers) / IBM Plex Sans (body/prose)
+   Layout: asymmetric grid, max-w-6xl, px-4 sm:px-8, section-divider gradient rules
+   Signature element: LIVE COMMAND-LINE HERO — the headline "maul" renders as a
+     blinking terminal prompt on load. Justified by the profile (SAP B1 tech consultant,
+     CLI workflows) — it is a domain signal, not a generic animation. Respects reduced motion.
+   What changed vs prev: removed centered Hero-CTA card, gradient buttons, Inter font.
+     Now: monospaced labels + asymmetric two-col split + terminal prompt aesthetic.
+-->
 
 <!-- HEADER -->
 <header class="site-header sticky top-0 z-50 bg-section-dark text-carbon-30 border-b border-line">
@@ -170,7 +167,7 @@
     <div class="relative mx-auto max-w-6xl px-4 sm:px-8 py-16 sm:py-24 lg:py-32">
       <!-- scanline ticker -->
       <div class="absolute top-4 left-0 right-0 overflow-hidden whitespace-nowrap text-[10px] font-mono text-carbon-60 select-none pointer-events-none">
-        <div class="ticker-track animate-[scroll-x_45s_linear_infinite] flex w-max gap-[4rem]">
+        <div class="ticker-track animate-scroll-x flex w-max gap-[4rem]">
           <span>SBO SYSTEM ONLINE · SERVICE LAYER · RICEF · LARAVEL · DOCKER · GIT</span>
           <span>SBO SYSTEM ONLINE · SERVICE LAYER · RICEF · LARAVEL · DOCKER · GIT</span>
         </div>
@@ -253,7 +250,7 @@
 
   <!-- ticker -->
   <div class="bg-section-dark overflow-hidden">
-    <div class="ticker-track flex w-max whitespace-nowrap will-change-transform">
+    <div class="ticker-track animate-scroll-x flex w-max whitespace-nowrap will-change-transform">
       <span class="ticker-group font-mono text-[11px] tracking-[0.32px] text-carbon-30 py-3">
         WEB DEV · SYSTEMS · INTEGRATIONS · <span class="text-blue-60">●</span>
       </span>
@@ -452,13 +449,26 @@
   const sections = document.querySelectorAll('section[id]');
 
   window.addEventListener('scroll', () => {
-    if (progressBar && !progressBar.style.transition) {
+    if (progressBar) {
       requestAnimationFrame(() => {
         const max = document.documentElement.scrollHeight - window.innerHeight;
         const p = max > 0 ? window.scrollY / max : 0;
-        if (progressBar) progressBar.style.transform = `scaleX(${p})`;
+        progressBar.style.transform = `scaleX(${p})`;
       });
     }
+
+    // nav active by scroll position
+    const fromTop = window.scrollY + 120;
+    let current = 'top';
+    sections.forEach(sec => {
+      const top = sec.offsetTop;
+      const height = sec.offsetHeight;
+      if (fromTop >= top && fromTop < top + height) current = sec.id;
+    });
+    navLinks.forEach(a => {
+      const isActive = a.getAttribute('href') === '#' + current;
+      a.classList.toggle('is-active', isActive);
+    });
   });
 
   // typewriter + cursor blink
@@ -516,12 +526,9 @@
     });
   }
 
-  // ticker scroll animation (reduced-motion guard)
-  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches === false) {
-    const tickers = document.querySelectorAll('.ticker-track');
-    tickers.forEach(t => {
-      t.style.animationDuration = Math.max(20, t.scrollWidth / 60) + 's';
-    });
+  // reduced-motion guard for CSS animations
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    document.querySelectorAll('.ticker-track').forEach(t => t.style.animationPlayState = 'paused');
   }
 </script>
 </body>
